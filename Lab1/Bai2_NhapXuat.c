@@ -24,8 +24,8 @@ int main() {
 
     printf("\nMa so sinh vien: %s\n", mssv);
     printf("Ho Va Ten: %s\n", ho_ten);
-    printf("Nam sinh: %d\n",nam_sinh);
-    printf("Tuoi: %d\n", 2026 - nam_sinh);
+    printf("Nam sinh: %d\n", nam_sinh);
+    printf("Tuoi: %d\n",2026 - nam_sinh);
     printf("Diem Trung Binh: %.2f\n", diem_tb); 
 
     return 0;
