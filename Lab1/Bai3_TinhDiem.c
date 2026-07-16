@@ -2,7 +2,6 @@
 #include <string.h>
 
 int main() {
-    // Khai báo biến
     char mssv[50];
     char ho_ten[100];
     float diem_toan, diem_ly, diem_hoa;
@@ -15,6 +14,7 @@ int main() {
 
     printf("Nhap Ho va Ten: ");
     fgets(ho_ten, sizeof(ho_ten), stdin);
+    ho_ten[strcspn(ho_ten, "\n")] = '\0';
 
     printf("Nhap Diem Toan: ");
     scanf("%f", &diem_toan);
