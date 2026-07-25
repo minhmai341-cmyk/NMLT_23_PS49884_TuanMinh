@@ -1,9 +1,11 @@
 #include <stdio.h>
 
-int main() {
-    int choice;
+int main()
+{
+    int chon;
 
-    do {
+    do
+    {
         printf("\n+---------------------------------------------------+\n");
         printf("|               MENU CHUONG TRINH LAB 4             |\n");
         printf("+---------------------------------------------------+\n");
@@ -14,31 +16,102 @@ int main() {
         printf("+---------------------------------------------------+\n");
 
         printf(">> Xin moi chon chuc nang (1-4): ");
-        scanf("%d", &choice);
+        scanf("%d", &chon);
 
-        switch(choice)
+        switch (chon)
         {
-            case 1:
-                printf("Chuc nang 1 dang duoc cap nhat.\n");
-                break;
+        case 1:
+        {
+            int min, max;
+            int tong = 0;
+            int bienDem = 0;
 
-            case 2:
-                printf("Chuc nang 2 dang duoc cap nhat.\n");
-                break;
+            printf("Nhap min: ");
+            scanf("%d", &min);
 
-            case 3:
-                printf("Chuc nang 3 dang duoc cap nhat.\n");
-                break;
+            printf("Nhap max: ");
+            scanf("%d", &max);
 
-            case 4:
-                printf("Da thoat chuong trinh!\n");
+            if (min > max)
+            {
+                printf("Loi! min phai nho hon hoac bang max.\n");
                 break;
+            }
 
-            default:
-                printf("Lua chon khong hop le!\n");
+            for (int i = min; i <= max; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    tong += i;
+                    bienDem++;
+                }
+            }
+
+            if (bienDem == 0)
+            {
+                printf("Khong co so chia het cho 2 trong khoang.\n");
+            }
+            else
+            {
+                float trungBinh = (float)tong / bienDem;
+
+                printf("Tong = %d\n", tong);
+                printf("So luong = %d\n", bienDem);
+                printf("Trung binh = %.2f\n", trungBinh);
+            }
+
+            break;
         }
 
-    } while(choice != 4);
+        case 2:
+        {
+            int x;
+            int laSoNguyenTo = 1;
+
+            printf("Nhap so can kiem tra: ");
+            scanf("%d", &x);
+
+            if (x < 2)
+            {
+                laSoNguyenTo = 0;
+            }
+            else
+            {
+                for (int i = 2; i < x; i++)
+                {
+                    if (x % i == 0)
+                    {
+                        laSoNguyenTo = 0;
+                        break;
+                    }
+                }
+            }
+
+            if (laSoNguyenTo)
+            {
+                printf("%d la so nguyen to.\n", x);
+            }
+            else
+            {
+                printf("%d khong phai la so nguyen to.\n", x);
+            }
+
+            break;
+        }
+
+        case 3:
+            printf("Chuc nang 3 dang duoc cap nhat.\n");
+            break;
+
+        case 4:
+            printf("Da thoat chuong trinh!\n");
+            break;
+
+        default:
+            printf("Lua chon khong hop le!\n");
+        }
+
+    } while (chon != 4);
 
     return 0;
 }
