@@ -100,8 +100,39 @@ int main()
         }
 
         case 3:
-            printf("Chuc nang 3 dang duoc cap nhat.\n");
+        {
+            int x;
+            int laSoChinhPhuong = 0;
+
+            printf("Nhap so can kiem tra: ");
+            scanf("%d", &x);
+
+            if (x < 0)
+            {
+                printf("%d khong phai la so chinh phuong.\n", x);
+                break;
+            }
+
+            for (int i = 0; i <= x; i++)
+            {
+                if (i * i == x)
+                {
+                    laSoChinhPhuong = 1;
+                    break;
+                }
+            }
+
+            if (laSoChinhPhuong)
+            {
+                printf("%d la so chinh phuong.\n", x);
+            }
+            else
+            {
+                printf("%d khong phai la so chinh phuong.\n", x);
+            }
+
             break;
+        }
 
         case 4:
             printf("Da thoat chuong trinh!\n");
