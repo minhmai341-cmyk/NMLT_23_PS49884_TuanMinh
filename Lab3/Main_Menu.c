@@ -11,7 +11,7 @@ int main()
     do
     {
         printf("+-------------------------------+\n");
-        printf("| MENU CHƯƠNG TRÌNH LAB 3.   |\n");
+        printf("|    MENU CHUONG TRINH LAB 3.   |\n");
         printf("+-------------------------------+\n");
         printf("| 0. Thoat chuong trinh.        |\n");
         printf("| 1. Tinh hoc luc sinh vien     |\n");
