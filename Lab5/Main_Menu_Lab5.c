@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
 void menu();
 void chucNang1();
+void chucNang2();
 int soLonNhat(int a, int b, int c);
+bool kiemTraNamNhuan(int nam);
 int main()
 {
     int chon;
@@ -16,7 +19,9 @@ int main()
         case 1:
             chucNang1();
             break;
-
+        case 2:
+            chucNang2();
+            break;
         case 5:
             printf("Tam biet!");
             break;
@@ -60,4 +65,20 @@ int soLonNhat(int a, int b, int c)
         lonNhat = c;
     }
     return lonNhat;
+}
+void chucNang2(){
+    int nam;
+    printf("Nhap nam: ");
+    scanf("%d",&nam);
+    if(kiemTraNamNhuan(nam)){
+        printf("Nam %d la nam nhuan\n",nam);
+    }else{
+        printf("Nam %d khong phai la nam nhuan\n",nam);
+    }
+}
+bool kiemTraNamNhuan(int nam){
+    if(nam%400==0 || (nam%4==0 && nam%100!=0))
+        return true;
+    else
+        return false;
 }
