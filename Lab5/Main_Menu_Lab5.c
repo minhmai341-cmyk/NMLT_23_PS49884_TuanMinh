@@ -4,8 +4,10 @@
 void menu();
 void chucNang1();
 void chucNang2();
+void chucNang3();
 int soLonNhat(int a, int b, int c);
 bool kiemTraNamNhuan(int nam);
+void swap(int *a, int *b);
 int main()
 {
     int chon;
@@ -21,6 +23,9 @@ int main()
             break;
         case 2:
             chucNang2();
+            break;
+        case 3:
+            chucNang3();
             break;
         case 5:
             printf("Tam biet!");
@@ -66,19 +71,40 @@ int soLonNhat(int a, int b, int c)
     }
     return lonNhat;
 }
-void chucNang2(){
+void chucNang2()
+{
     int nam;
     printf("Nhap nam: ");
-    scanf("%d",&nam);
-    if(kiemTraNamNhuan(nam)){
-        printf("Nam %d la nam nhuan\n",nam);
-    }else{
-        printf("Nam %d khong phai la nam nhuan\n",nam);
+    scanf("%d", &nam);
+    if (kiemTraNamNhuan(nam))
+    {
+        printf("Nam %d la nam nhuan\n", nam);
+    }
+    else
+    {
+        printf("Nam %d khong phai la nam nhuan\n", nam);
     }
 }
-bool kiemTraNamNhuan(int nam){
-    if(nam%400==0 || (nam%4==0 && nam%100!=0))
+bool kiemTraNamNhuan(int nam)
+{
+    if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0))
         return true;
     else
         return false;
+}
+void chucNang3()
+{
+    int x, y;
+    printf("Nhap hai so x, y: ");
+    scanf("%d%d", &x, &y);
+    printf("Truoc khi hoan vi x = %d. y = %d\n", x, y);
+    swap(&x, &y);
+    printf("Sau khi hoan vi x = %d. y = %d\n", x, y);
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
