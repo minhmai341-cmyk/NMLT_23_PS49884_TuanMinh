@@ -1,5 +1,7 @@
 #include <stdio.h>
 void menu();
+void chucNang1();
+float tinhTrungBinhCong(int a[], int n);
 int main()
 {
     int chon;
@@ -10,6 +12,9 @@ int main()
         scanf("%d", &chon);
         switch (chon)
         {
+        case 1:
+            chucNang1();
+            break;
         case 6:
             printf("Tam biet!");
             break;
@@ -34,4 +39,25 @@ void menu()
     printf("| 5. Loc va xuat vi tri cac so le trong ma tran     |\n");
     printf("| 6. Thoat chuong trinh                             |\n");
     printf("+---------------------------------------------------+\n");
+}
+void chucNang1()
+{
+    int n;
+    int a[10];
+    printf("Nhap n: ");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("Nhap A[%d]= ", i);
+        scanf("%d", &a[i]);
+    }
+    float tbc = tinhTrungBinhCong(a, n);
+    if (tbc == -FLT_MAX)
+    {
+        printf("Khong co so chia het cho 3 va 5\n");
+    }
+    else
+    {
+        printf("Trung binh cong cua mang: %.2f\n", tbc);
+    }
 }
