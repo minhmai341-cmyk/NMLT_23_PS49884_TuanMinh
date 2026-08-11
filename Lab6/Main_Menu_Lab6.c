@@ -3,7 +3,9 @@
 #include <float.h>
 void menu();
 void chucNang1();
+void chucNang2();
 float tinhTrungBinhCong(int a[], int n);
+void timMaxMin(int a[], int n);
 int main()
 {
     int chon;
@@ -16,6 +18,9 @@ int main()
         {
         case 1:
             chucNang1();
+            break;
+        case 2:
+            chucNang2();
             break;
         case 6:
             printf("Tam biet!");
@@ -63,18 +68,52 @@ void chucNang1()
         printf("Trung binh cong cua mang: %.2f\n", tbc);
     }
 }
-float tinhTrungBinhCong(int a[], int n){
+float tinhTrungBinhCong(int a[], int n)
+{
     int tong = 0;
     int soDem = 0;
-    for(int i=0;i<n;i++){
-        if(a[i]%3==0 && a[i]%5==0){
-            tong+=a[i];
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] % 3 == 0 && a[i] % 5 == 0)
+        {
+            tong += a[i];
             soDem++;
         }
     }
-    if(soDem==0){
-        return -FLT_MAX; //số nhỏ nhất trong float
-    }else{
-        return (float)tong/soDem;
+    if (soDem == 0)
+    {
+        return -FLT_MAX;
     }
+    else
+    {
+        return (float)tong / soDem;
+    }
+}
+void chucNang2(){
+    int n;
+    int a[10];
+    printf("Nhap n: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        printf("Nhap A[%d]= ",i);
+        scanf("%d",&a[i]);
+    }
+    timMaxMin(a,n);
+}
+void timMaxMin(int a[], int n){
+    //4 6 3 8
+    int min,max;
+    min=a[0]; //4
+    max=a[0]; //4
+    for(int i=1;i<n;i++){
+        if(min>a[i]){   //1   4 > 6  
+                        //2.  4 > 3   min = 3
+            min=a[i];
+        }
+        if(max<a[i]){   //1   4 < 6. max = 6
+                        //2   6 < 3
+            max=a[i]; 
+        }
+    }
+    printf("Min = %d\t Max = %d\n",min,max);
 }
