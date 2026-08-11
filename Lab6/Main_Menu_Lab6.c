@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <math.h>
+#include <float.h>
 void menu();
 void chucNang1();
 float tinhTrungBinhCong(int a[], int n);
@@ -59,5 +61,20 @@ void chucNang1()
     else
     {
         printf("Trung binh cong cua mang: %.2f\n", tbc);
+    }
+}
+float tinhTrungBinhCong(int a[], int n){
+    int tong = 0;
+    int soDem = 0;
+    for(int i=0;i<n;i++){
+        if(a[i]%3==0 && a[i]%5==0){
+            tong+=a[i];
+            soDem++;
+        }
+    }
+    if(soDem==0){
+        return -FLT_MAX; //số nhỏ nhất trong float
+    }else{
+        return (float)tong/soDem;
     }
 }
