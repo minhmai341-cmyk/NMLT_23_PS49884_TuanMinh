@@ -6,9 +6,12 @@ void menu();
 void chucNang1();
 void chucNang2();
 void chucNang3();
+void chucNang4();
 float tinhTrungBinhCong(int a[], int n);
 void timMaxMin(int a[], int n);
 void sapXepGiamDan(int a[], int n);
+void swap(int *a, int *b);
+void maTranBinhPhuong(int row, int col);
 int main()
 {
     int chon;
@@ -27,7 +30,10 @@ int main()
             break;
         case 3:
             chucNang3();
-            break;    
+            break;
+        case 4:
+            chucNang4();
+            break;
         case 6:
             printf("Tam biet!");
             break;
@@ -150,4 +156,24 @@ void sapXepGiamDan(int a[], int n){
         printf("%d\t",a[i]);
     }
     printf("\n");
+}
+void chucNang4()
+{
+    maTranBinhPhuong(3,3);
+}
+void maTranBinhPhuong(int row, int col)
+{
+    int a[10][10];
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            printf("A[%d,%d] = ",i,j);
+            scanf("%d",&a[i][j]);
+        }
+    }
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            printf("%4d\t",a[i][j]*a[i][j]);
+        }
+        printf("\n");
+    }
 }
