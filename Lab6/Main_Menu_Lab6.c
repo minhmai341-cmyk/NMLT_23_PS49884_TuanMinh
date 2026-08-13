@@ -101,17 +101,14 @@ void chucNang2(){
     timMaxMin(a,n);
 }
 void timMaxMin(int a[], int n){
-    //4 6 3 8
     int min,max;
-    min=a[0]; //4
-    max=a[0]; //4
+    min=a[0];
+    max=a[0];
     for(int i=1;i<n;i++){
-        if(min>a[i]){   //1   4 > 6  
-                        //2.  4 > 3   min = 3
+        if(min>a[i]){
             min=a[i];
         }
-        if(max<a[i]){   //1   4 < 6. max = 6
-                        //2   6 < 3
+        if(max<a[i]){ 
             max=a[i]; 
         }
     }
