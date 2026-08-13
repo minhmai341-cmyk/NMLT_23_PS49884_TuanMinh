@@ -7,11 +7,13 @@ void chucNang1();
 void chucNang2();
 void chucNang3();
 void chucNang4();
+void chucNang5();
 float tinhTrungBinhCong(int a[], int n);
 void timMaxMin(int a[], int n);
 void sapXepGiamDan(int a[], int n);
 void swap(int *a, int *b);
 void maTranBinhPhuong(int row, int col);
+void xuatSoLeMaTran(int row, int col);
 int main()
 {
     int chon;
@@ -33,6 +35,9 @@ int main()
             break;
         case 4:
             chucNang4();
+            break;
+        case 5:
+            chucNang5();
             break;
         case 6:
             printf("Tam biet!");
@@ -175,5 +180,28 @@ void maTranBinhPhuong(int row, int col)
             printf("%4d\t",a[i][j]*a[i][j]);
         }
         printf("\n");
+    }
+}
+void chucNang5()
+{
+    xuatSoLeMaTran(3, 3);
+}
+
+void xuatSoLeMaTran(int row, int col)
+{
+    int a[10][10];
+    for(int i = 0; i < row; i++){
+        for(int j = 0; j < col; j++){
+            printf("A[%d][%d] = ", i, j);
+            scanf("%d", &a[i][j]);
+        }
+    }
+    printf("\nCac so le trong ma tran:\n");
+    for(int i = 0; i < row; i++){
+        for(int j = 0; j < col; j++){
+            if(a[i][j] % 2 != 0){
+                printf("A[%d][%d] = %d\n", i, j, a[i][j]);
+            }
+        }
     }
 }
