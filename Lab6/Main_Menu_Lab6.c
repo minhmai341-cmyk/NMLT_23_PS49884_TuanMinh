@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <math.h>
 #include <float.h>
+#include <stdbool.h>
 void menu();
 void chucNang1();
 void chucNang2();
+void chucNang3();
 float tinhTrungBinhCong(int a[], int n);
 void timMaxMin(int a[], int n);
+void sapXepGiamDan(int a[], int n);
 int main()
 {
     int chon;
@@ -22,6 +25,9 @@ int main()
         case 2:
             chucNang2();
             break;
+        case 3:
+            chucNang3();
+            break;    
         case 6:
             printf("Tam biet!");
             break;
@@ -89,7 +95,8 @@ float tinhTrungBinhCong(int a[], int n)
         return (float)tong / soDem;
     }
 }
-void chucNang2(){
+void chucNang2()
+{
     int n;
     int a[10];
     printf("Nhap n: ");
@@ -113,4 +120,34 @@ void timMaxMin(int a[], int n){
         }
     }
     printf("Min = %d\t Max = %d\n",min,max);
+}
+void chucNang3(){
+    int n;
+    int a[10];
+    printf("Nhap n: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++){
+        printf("Nhap A[%d]= ",i);
+        scanf("%d",&a[i]);
+    }
+    sapXepGiamDan(a,n);
+}
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+} 
+void sapXepGiamDan(int a[], int n){
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(a[i] < a[j]){
+                swap(&a[i],&a[j]);
+            }
+        }
+    }
+    for(int i=0;i<n;i++){
+        printf("%d\t",a[i]);
+    }
+    printf("\n");
 }
