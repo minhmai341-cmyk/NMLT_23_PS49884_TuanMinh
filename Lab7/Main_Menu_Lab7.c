@@ -4,8 +4,10 @@
 
 void menu();
 void chucNang1();
+void chucNang2();
 
 void demNguyenAmPhuAm();
+void kiemTraDangNhap();
 int main()
 {
     int chon;
@@ -23,6 +25,9 @@ int main()
         case 1:
             chucNang1();
             break;
+        case 2:
+            chucNang2();
+            break;    
         case 5:
             printf("Tam biet!\n");
             break;
@@ -72,4 +77,27 @@ void chucNang1()
  
     printf("So luong nguyen am: %d\n", demNA);
     printf("So luong phu am: %d\n", demPA);
+}
+void chucNang2()
+{
+    char userSys[] = "admin";
+    char passSys[] = "123456";
+    char user[50], pass[50];
+ 
+    printf("\nNhap Username: ");
+    fgets(user, sizeof(user), stdin);
+    user[strcspn(user, "\n")] = '\0';
+ 
+    printf("Nhap Password: ");
+    fgets(pass, sizeof(pass), stdin);
+    pass[strcspn(pass, "\n")] = '\0';
+ 
+    if (strcmp(user, userSys) == 0 && strcmp(pass, passSys) == 0)
+    {
+        printf("\n>> Dang nhap thanh cong!\n");
+    }
+    else
+    {
+        printf("\n>> Username hoac Password khong chinh xac!\n");
+    }
 }
