@@ -6,10 +6,12 @@ void menu();
 void chucNang1();
 void chucNang2();
 void chucNang3();
+void chucNang4();
 
 void demNguyenAmPhuAm();
 void kiemTraDangNhap();
 void sapXepChuoi();
+void thapPhanSangNhiPhan();
 int main()
 {
     int chon;
@@ -32,6 +34,9 @@ int main()
             break;
         case 3:
             chucNang3();
+            break;
+        case 4:
+            chucNang4();
             break;    
         case 5:
             printf("Tam biet!\n");
@@ -136,4 +141,29 @@ void chucNang3()
     {
         printf("%d. %s\n", i + 1, s[i]);
     }
+}
+void chucNang4()
+{
+    int n;
+    char nhiPhan[50];
+    int index = 0;
+ 
+    printf("\nNhap vao mot so nguyen duong: ");
+    scanf("%d", &n);
+ 
+    int temp = n;
+    do
+    {
+        int du = temp % 2;
+        nhiPhan[index] = (du == 1) ? '1' : '0';
+        index++;
+        temp /= 2;
+    } while (temp != 0);
+ 
+    printf("So nhi phan cua %d la: ", n);
+    for (int i = index - 1; i >= 0; i--)
+    {
+        printf("%c", nhiPhan[i]);
+    }
+    printf("\n");
 }
