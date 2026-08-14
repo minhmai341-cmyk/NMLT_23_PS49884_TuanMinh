@@ -5,9 +5,11 @@
 void menu();
 void chucNang1();
 void chucNang2();
+void chucNang3();
 
 void demNguyenAmPhuAm();
 void kiemTraDangNhap();
+void sapXepChuoi();
 int main()
 {
     int chon;
@@ -27,6 +29,9 @@ int main()
             break;
         case 2:
             chucNang2();
+            break;
+        case 3:
+            chucNang3();
             break;    
         case 5:
             printf("Tam biet!\n");
@@ -99,5 +104,36 @@ void chucNang2()
     else
     {
         printf("\n>> Username hoac Password khong chinh xac!\n");
+    }
+}
+void chucNang3()
+{
+    char s[5][50];
+    char temp[50];
+ 
+    for (int i = 0; i < 5; i++)
+    {
+        printf("Nhap chuoi/ten thu %d: ", i + 1);
+        fgets(s[i], sizeof(s[i]), stdin);
+        s[i][strcspn(s[i], "\n")] = '\0';
+    }
+ 
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = i + 1; j < 5; j++)
+        {
+            if (strcmp(s[i], s[j]) > 0)
+            {
+                strcpy(temp, s[i]);
+                strcpy(s[i], s[j]);
+                strcpy(s[j], temp);
+            }
+        }
+    }
+ 
+    printf("\nDanh sach da sap xep theo Alphabet:\n");
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d. %s\n", i + 1, s[i]);
     }
 }
