@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 void menu();
+void chucNang1();
 
+void demNguyenAmPhuAm();
 int main()
 {
     int chon;
@@ -12,9 +16,13 @@ int main()
 
         printf(">> Xin moi chon chuc nang (1-5): ");
         scanf("%d", &chon);
+        getchar();
 
         switch(chon)
         {
+        case 1:
+            chucNang1();
+            break;
         case 5:
             printf("Tam biet!\n");
             break;
@@ -39,4 +47,29 @@ void menu()
     printf("| 4. Chuyen doi so Thap phan sang Nhi phan (Chuoi)  |\n");
     printf("| 5. Thoat chuong trinh                             |\n");
     printf("+---------------------------------------------------+\n");
+}
+void chucNang1()
+{
+    char s[10];
+    int demNA = 0, demPA = 0;
+ 
+    printf("\nNhap chuoi: ");
+    fgets(s, sizeof(s), stdin);
+ 
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        char c = tolower(s[i]);
+ 
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+        {
+            demNA++;
+        }
+        else
+        {
+            demPA++;
+        }
+    }
+ 
+    printf("So luong nguyen am: %d\n", demNA);
+    printf("So luong phu am: %d\n", demPA);
 }
