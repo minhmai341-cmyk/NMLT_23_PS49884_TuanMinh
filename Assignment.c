@@ -2,10 +2,22 @@
 #include <math.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
+#include <string.h>
 struct giaDien
 {
     int mucTieuThu;
     float gia;
+};
+struct SinhVien
+{
+    char hoTen[50];
+    float diem;
+};
+struct phanSo
+{
+    int tu;
+    int mau;
 };
 void menu();
 void chucNang1();
@@ -14,11 +26,17 @@ void chucNang3();
 void chucNang4();
 void chucNang5();
 void chucNang6();
+void chucNang7();
+void chucNang8();
+void chucNang9();
+void chucNang10();
 bool kiemTraSoNguyen(float so);
 bool kiemTraSNT(int so);
 bool kiemTraSCP(int so);
 int timUCLN(int a, int b);
 int timBCNN(int a, int b);
+struct phanSo nhapPS();
+struct phanSo rutGonPS(struct phanSo ps);
 int main()
 {
     int chon;
@@ -26,7 +44,12 @@ int main()
     {
         menu();
         printf("Ban hay chon chuc nang (0 - 10): ");
-        scanf("%d", &chon);
+        if (scanf("%d", &chon) != 1)
+        {
+            chon = -1;
+            while (getchar() != '\n')
+                ;
+        }
         switch (chon)
         {
         case 0:
@@ -50,6 +73,18 @@ int main()
         case 6:
             chucNang6();
             break;
+        case 7:
+            chucNang7();
+            break;
+        case 8:
+            chucNang8();
+            break;
+        case 9:
+            chucNang9();
+            break;
+        case 10:
+            chucNang10();
+            break;
         default:
             printf("Ban phai chon chuc nang 0 - 10\n");
             break;
@@ -61,7 +96,7 @@ int main()
 void menu()
 {
     printf("+--------------------------------------------------------------------+\n");
-    printf("|                      MENU CHUONG TRINH                             |\n");
+    printf("|                        MENU CHUONG TRINH                           |\n");
     printf("+--------------------------------------------------------------------+\n");
     printf("| 0.  Thoat chuong trinh.                                            |\n");
     printf("| 1.  Kiem tra so nguyen                                             |\n");
@@ -258,7 +293,7 @@ void chucNang6()
 {
     int tienVay = 12000000, kyHan = 12;
     float laiThang = 0.05;
-    int gocPhaiTra = tienVay/kyHan;
+    int gocPhaiTra = tienVay / kyHan;
 
     printf("%6s%18s%18s%18s%18s\n", "Thang", "Tien lai", "Goc phai tra", "Tien phai tra", "Con lai");
     for (int i = 1; i <= kyHan; i++)
@@ -266,5 +301,146 @@ void chucNang6()
         int tienLai = tienVay * laiThang;
         tienVay = tienVay - gocPhaiTra;
         printf("%6d%18d%18d%18d%18d\n", i, tienLai, gocPhaiTra, tienLai + gocPhaiTra, tienVay);
+    }
+}
+void chucNang7()
+{
+    float phanTramDuocVay = 0.8;
+    int tienVay = 500000000 * phanTramDuocVay, kyHan = 12 * 24;
+    float laiThang = 7.2 / 12;
+    int gocPhaiTra = tienVay / kyHan;
+
+    printf("So tien vay: %.0f\n", tienVay);
+    printf("%6s%18s%18s%18s%18s\n", "Thang", "Tien lai", "Goc phai tra", "Tien phai tra", "Con lai");
+    for (int i = 1; i <= kyHan; i++)
+    {
+        int tienLai = tienVay * laiThang;
+        tienVay = tienVay - gocPhaiTra;
+        int tienPhaiTra = tienLai + gocPhaiTra;
+        if (i == kyHan)
+        {
+            tienPhaiTra = tienPhaiTra + tienVay;
+            tienVay = 0;
+        }
+        printf("%6d%18d%18d%18d%18d\n", i, tienLai, gocPhaiTra, tienPhaiTra, tienVay);
+    }
+}
+void chucNang8()
+{
+    int n;
+    printf("Nhap so luong sinh vien: ");
+    scanf("%d", &n);
+
+    struct SinhVien sv[100];
+    for (int i = 0; i < n; i++)
+    {
+        printf("\nNhap thong tin sinh vien thu %d:\n", i + 1);
+        printf("Ho va ten: \n");
+        fflush(stdin);
+    getchar();
+            fgets(sv[i].hoTen, sizeof(sv[i].hoTen), stdin);
+        sv[i].hoTen[strcspn(sv[i].hoTen, "\n")] = 0;
+
+        printf("Diem: ");
+        scanf("%f", &sv[i].diem);
+    }
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (sv[i].diem < sv[j].diem)
+            {
+                struct SinhVien temp = sv[i];
+                sv[i] = sv[j];
+                sv[j] = temp;
+            }
+        }
+    }
+
+    printf("\n%-25s %-10s %-15s\n", "Ho va Ten", "Diem", "Hoc Luc");
+    printf("--------------------------------------------------\n");
+    for (int i = 0; i < n; i++)
+    {
+        char hocLuc[20];
+        if (sv[i].diem >= 9)
+            strcpy(hocLuc, "Xuat sac");
+        else if (sv[i].diem >= 8)
+            strcpy(hocLuc, "Gioi");
+        else if (sv[i].diem >= 6.5)
+            strcpy(hocLuc, "Kha");
+        else if (sv[i].diem >= 5)
+            strcpy(hocLuc, "Trung binh");
+        else
+            strcpy(hocLuc, "Yeu");
+
+        printf("%-25s %-10.2f %-15s\n", sv[i].hoTen, sv[i].diem, hocLuc);
+    }
+}
+void chucNang9()
+{
+    srand(time(NULL));
+    int r1 = rand() % 15 + 1, r2;
+    do
+    {
+        r2 = rand() % 15 + 1;
+    } while (r2 != r1);
+    int a,b;
+    printf("Nhap hai so: ");
+    scanf("%d %d", &a, &b);
+    int dem = 0;
+    if  ((a==r1) || ( a==r2))
+    dem++;
+    if  ((b==r1) || ( b==r2))
+    dem++;
+    switch (dem)
+    {
+        case 0:
+            printf("Chuc ban may man lan sau!\n");
+            break;
+        case 1:
+            printf("Chuc mung ban da trung giai nhi!\n");
+            break;
+        case 2:
+            printf("Chuc mung ban da trung giai nhat!\n");
+            break;
+    }
+}
+void chucNang10()
+{
+    struct phanSo ps1, ps2, psTong, psHieu, psTich, psThuong;
+    printf("Nhap phan so 1 (tu mau): ");
+    scanf("%d%d", &ps1.tu, &ps1.mau);
+    printf("Nhap phan so 2 (tu mau): ");
+    scanf("%d%d", &ps2.tu, &ps2.mau);
+
+    if (ps1.mau == 0 || ps2.mau == 0)
+    {
+        printf("Mau so khong the bang 0!\n");
+        return;
+    }
+
+    psTong.tu = ps1.tu * ps2.mau + ps2.tu * ps1.mau;
+    psTong.mau = ps1.mau * ps2.mau;
+
+    psHieu.tu = ps1.tu * ps2.mau - ps2.tu * ps1.mau;
+    psHieu.mau = ps1.mau * ps2.mau;
+
+    psTich.tu = ps1.tu * ps2.tu;
+    psTich.mau = ps1.mau * ps2.mau;
+
+    psThuong.tu = ps1.tu * ps2.mau;
+    psThuong.mau = ps1.mau * ps2.tu;
+
+    printf("Tong: %d/%d + %d/%d = %d/%d\n", ps1.tu, ps1.mau, ps2.tu, ps2.mau, psTong.tu, psTong.mau);
+    printf("Hieu: %d/%d - %d/%d = %d/%d\n", ps1.tu, ps1.mau, ps2.tu, ps2.mau, psHieu.tu, psHieu.mau);
+    printf("Tich: %d/%d * %d/%d = %d/%d\n", ps1.tu, ps1.mau, ps2.tu, ps2.mau, psTich.tu, psTich.mau);
+    if (psThuong.mau != 0)
+    {
+        printf("Thuong: %d/%d / %d/%d = %d/%d\n", ps1.tu, ps1.mau, ps2.tu, ps2.mau, psThuong.tu, psThuong.mau);
+    }
+    else
+    {
+printf("Khong the chia cho phan so co tu so bang 0!\n");
     }
 }
